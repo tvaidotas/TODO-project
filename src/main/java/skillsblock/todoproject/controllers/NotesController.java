@@ -1,8 +1,6 @@
 package skillsblock.todoproject.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import skillsblock.todoproject.models.Note;
 import skillsblock.todoproject.repository.NotesRepository;
 
@@ -21,6 +19,11 @@ public class NotesController {
     @GetMapping("notes")
     public List<Note> listAllNotes() {
         return repository.findAll();
+    }
+
+    @PostMapping("notes")
+    public Note addNote(@RequestBody Note note) {
+        return repository.saveAndFlush(note);
     }
 
 }
